@@ -47,12 +47,13 @@ public class GameLogic implements PlayableLogic{
         while (j>= 3 && j<8 ) {
             this._board[i][j].setPiece(this._attackers.get(k));
             this._board[i][j].getPiece().addPos(new Position(i, j));
-            this._board[i][j].setPieceSteppedOn();
             this._board[i][j].increamnetStepedOn();
             if (n == 13) {
                 n = 15;
             }
             this._attackers.get(k).setName("A" + n);
+            this._board[i][j].setPieceSteppedOn();
+
             n += 2;
             j++;
             k++;
@@ -61,8 +62,9 @@ public class GameLogic implements PlayableLogic{
         this._board[1][5].setPiece(this._attackers.get(k));
         this._board[1][5].getPiece().addPos(new Position(1, 5));
         this._board[1][5].increamnetStepedOn();
-        this._board[1][5].setPieceSteppedOn();
+
         this._attackers.get(k).setName("A12");
+        this._board[1][5].setPieceSteppedOn();
         k++;
 
          j = 0;
@@ -72,8 +74,9 @@ public class GameLogic implements PlayableLogic{
              this._board[i][j].setPiece(this._attackers.get(k));
              this._board[i][j].getPiece().addPos(new Position(i, j));
              this._board[i][j].increamnetStepedOn();
-             this._board[i][j].setPieceSteppedOn();
+
              this._attackers.get(k).setName("A" + n);
+             this._board[i][j].setPieceSteppedOn();
              i++;
              k++;
              n++;
@@ -82,8 +85,9 @@ public class GameLogic implements PlayableLogic{
         this._board[5][1].setPiece(this._attackers.get(k));
         this._board[5][1].getPiece().addPos(new Position(5, 1));
         this._board[5][1].increamnetStepedOn();
-        this._board[5][1].setPieceSteppedOn();
+
          this._attackers.get(k).setName("A6");
+        this._board[5][1].setPieceSteppedOn();
          k++;
 
          i = 10;
@@ -93,11 +97,12 @@ public class GameLogic implements PlayableLogic{
              this._board[i][j].setPiece(this._attackers.get(k));
              this._board[i][j].getPiece().addPos(new Position(i, j));
              this._board[i][j].increamnetStepedOn();
-             this._board[i][j].setPieceSteppedOn();
+
              if (n == 12) {
                 n = 14;
              }
              this._attackers.get(k).setName("A" + n);
+             this._board[i][j].setPieceSteppedOn();
              n += 2;
              j++;
              k++;
@@ -106,8 +111,9 @@ public class GameLogic implements PlayableLogic{
         this._board[9][5].setPiece(this._attackers.get(k));
         this._board[9][5].getPiece().addPos(new Position(9, 5));
         this._board[9][5].increamnetStepedOn();
-        this._board[9][5].setPieceSteppedOn();
+
         this._attackers.get(k).setName("A13");
+        this._board[9][5].setPieceSteppedOn();
         k++;
 
          i = 3;
@@ -117,8 +123,9 @@ public class GameLogic implements PlayableLogic{
             this._board[i][j].setPiece(this._attackers.get(k));
             this._board[i][j].getPiece().addPos(new Position(i, j));
             this._board[i][j].increamnetStepedOn();
-            this._board[i][j].setPieceSteppedOn();
+
             this._attackers.get(k).setName("A" + n);
+            this._board[i][j].setPieceSteppedOn();
             i++;
             k++;
             n++;
@@ -127,8 +134,9 @@ public class GameLogic implements PlayableLogic{
         this._board[5][9].setPiece(this._attackers.get(k));
         this._board[5][9].getPiece().addPos(new Position(5, 9));
         this._board[5][9].increamnetStepedOn();
-        this._board[5][9].setPieceSteppedOn();
+
         this._attackers.get(k).setName("A19");
+        this._board[5][9].setPieceSteppedOn();
 
         // initialize defenders
         k = 0;
@@ -136,8 +144,9 @@ public class GameLogic implements PlayableLogic{
         this._board[5][3].setPiece(this._defenders.get(k));
         this._board[5][3].getPiece().addPos(new Position(5, 3));
         this._board[5][3].increamnetStepedOn();
-        this._board[5][3].setPieceSteppedOn();
+
         this._defenders.get(k).setName("D1");
+        this._board[5][3].setPieceSteppedOn();
         k++;
 
         i = 4;
@@ -146,8 +155,9 @@ public class GameLogic implements PlayableLogic{
             this._board[i][j].setPiece(this._defenders.get(k));
             this._board[i][j].getPiece().addPos(new Position(i, j));
             this._board[i][j].increamnetStepedOn();
-            this._board[i][j].setPieceSteppedOn();
+
             this._defenders.get(k).setName("D" + n);
+            this._board[i][j].setPieceSteppedOn();
             i++;
             k++;
             n++;
@@ -160,9 +170,10 @@ public class GameLogic implements PlayableLogic{
                 this._board[i][j].setPiece(this._king);
                 this._board[i][j].getPiece().addPos(new Position(i, j));
                 this._board[i][j].increamnetStepedOn();
-                this._board[i][j].setPieceSteppedOn();
+
                 //this._defenders.get(k).setName("K7");
                 this._king.setName("K7");
+                this._board[i][j].setPieceSteppedOn();
 
                 i++;
                 n++;
@@ -170,8 +181,9 @@ public class GameLogic implements PlayableLogic{
             this._board[i][j].setPiece(this._defenders.get(k));
             this._board[i][j].getPiece().addPos(new Position(i, j));
             this._board[i][j].increamnetStepedOn();
-            this._board[i][j].setPieceSteppedOn();
+
             this._defenders.get(k).setName("D" + n);
+            this._board[i][j].setPieceSteppedOn();
             n++;
             i++;
             k++;
@@ -183,17 +195,19 @@ public class GameLogic implements PlayableLogic{
             this._board[i][j].setPiece(this._defenders.get(k));
             this._board[i][j].getPiece().addPos(new Position(i, j));
             this._board[i][j].increamnetStepedOn();
-            this._board[i][j].setPieceSteppedOn();
+
             this._defenders.get(k).setName("D" +n);
+            this._board[i][j].setPieceSteppedOn();
             i++;
             k++;
             n++;
         }
         this._board[5][7].setPiece(this._defenders.get(k));
-        this._board[5][7].getPiece().addPos(new Position(i, j));
+        this._board[5][7].getPiece().addPos(new Position(5, 7));
         this._board[5][7].increamnetStepedOn();
-        this._board[5][7].setPieceSteppedOn();
+
         this._defenders.get(k).setName("D13");
+        this._board[5][7].setPieceSteppedOn();
 
 
 
@@ -234,12 +248,48 @@ public class GameLogic implements PlayableLogic{
             ((ConcretePiece) piece).setSquares(dx);
         }
         this._board[destX][destY].increamnetStepedOn();
+        boolean isPresent = false;
         for (String str : this._board[destX][destY].getPieceSteppedOn()) {
-            if (str.equals(((ConcretePiece) piece).getName())) {
+            if (str != null && str.equals(((ConcretePiece) piece).getName())) {
+                isPresent = true;
                 break;
             }
-            this._board[destX][destY].getPieceSteppedOn().add(str);
+
         }
+        if (!isPresent && ((ConcretePiece) piece).getName() != null) {
+            this._board[destX][destY].getPieceSteppedOn().add(((ConcretePiece) piece).getName());
+        }
+        boolean gameOver = isGameFinished();
+        if (gameOver) {
+            ArrayList<ConcretePiece> wining = new ArrayList<>();
+            ArrayList<ConcretePiece> losing = new ArrayList<>();
+            ArrayList<Pawn> winingByKills = new ArrayList<>();
+            ArrayList<Pawn> losingByKills = new ArrayList<>();
+            if (isKingAtEdge()) {
+                wining = new ArrayList<>(this._defenders);
+                wining.add(this._king);
+                losing = new ArrayList<>(this._attackers);
+                printHistoryMove(wining, losing);
+
+                winingByKills = new ArrayList<>(this._defenders);
+                losingByKills = new ArrayList<>(this._attackers);
+                printKillSum(winingByKills, losingByKills);
+                printSquareHistory(wining, losing);
+                printPositionHistory();
+            } else if (isEmptyNeighbor(this._currentKingPos)) {
+                wining = new ArrayList<>(this._attackers);
+                losing = new ArrayList<>(_defenders);
+                losing.add(this._king);
+                printHistoryMove(wining, losing);
+
+                winingByKills = new ArrayList<>(this._attackers);
+                losingByKills = new ArrayList<>(this._defenders);
+                printKillSum(winingByKills, losingByKills);
+                printSquareHistory(wining, losing);
+                printPositionHistory();
+            }
+        }
+       // System.out.println(this._board[destX][destY].getPieceSteppedOn());
         changeTurn();
         return true;
     }
@@ -255,7 +305,7 @@ public class GameLogic implements PlayableLogic{
 //        if ((currY == destY) && (currX != destX)) {
 //            int min = Math.min(currX + 1, destX);
 //            int max = Math.max(currX - 1, destX);
-//            for (int i = min + 1; i <= max ; i++) {
+//            for (int i = min; i <= max ; i++) {
 //                if (this._board[i][currY].getPiece() != null) {
 //                    return false;
 //                }
@@ -319,33 +369,39 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
 
     private boolean isCaptured(Position position) {
         int x  = position.getX(), y = position.getY();
+        boolean captured = false;
+        int eatCount = 0;
 
         if ((x== 1) && (this._board[x - 1][y].getPiece() != null)
                 && !(this._board[x - 1][y].getPiece().getOwner().equals(this._current))
         &&!(this._board[x - 1][y].getPiece() instanceof King)) {
             this._board[x - 1][y].setPiece(null);
-            return true;
+            captured = true;
+            eatCount++;
         }
 
         if ((x== 9) && (this._board[x + 1][y].getPiece() != null)
                 && !(this._board[x + 1][y].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x + 1][y].getPiece() instanceof King)) {
             this._board[x + 1][y].setPiece(null);
-            return true;
+            captured =  true;
+            eatCount++;
         }
 
         if ((y== 1) && (this._board[x][y - 1].getPiece() != null)
                 && !(this._board[x][y - 1].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x][y - 1].getPiece() instanceof King)) {
             this._board[x][y - 1].setPiece(null);
-            return true;
+            captured = true;
+            eatCount++;
         }
 
         if ((y == 9) && (this._board[x][y + 1].getPiece() != null)
                 && !(this._board[x][y + 1].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x][y + 1].getPiece() instanceof King)) {
             this._board[x][y + 1].setPiece(null);
-            return true;
+            captured = true;
+            eatCount++;
         }
 
         if ((x <= 8) && (this._board[x+1][y].getPiece() != null)
@@ -354,7 +410,8 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
                 (this._board[x+2][y].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x + 1][y].getPiece() instanceof King)) {
             this._board[x+1][y].setPiece(null);
-            return true;
+            captured = true;
+            eatCount++;
         }
 
         if ((x >= 2) && (this._board[x-1][y].getPiece() != null)
@@ -363,7 +420,8 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
                 (this._board[x-2][y].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x - 1][y].getPiece() instanceof King)) {
             this._board[x-1][y].setPiece(null);
-            return true;
+            captured = true;
+            eatCount++;
         }
 
         if ((y <= 8) && (this._board[x][y + 1].getPiece() != null)
@@ -372,7 +430,8 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
                 (this._board[x][y + 2].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x][y + 1].getPiece() instanceof King)) {
             this._board[x][y + 1].setPiece(null);
-            return true;
+            captured = true;
+            eatCount++;
         }
 
         if ((y >= 2 )&& (this._board[x][y - 1].getPiece() != null) &&
@@ -381,11 +440,15 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
                 (this._board[x][y - 2].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x][y - 1].getPiece() instanceof King)) {
             this._board[x][y - 1].setPiece(null);
-            return true;
+            captured = true;
+            eatCount++;
         }
 
-        return false;
+        return captured;
     }
+
+
+
 
     private void changeTurn() {
         if (this._current == this._defender) {
@@ -419,10 +482,6 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
         ArrayList<Pawn> winingByKills = new ArrayList<>();
         ArrayList<Pawn> losingByKills = new ArrayList<>();
 
-
-
-
-
         // king is at one of the board corners
         if (isKingAtEdge()) {
             wining = new ArrayList<>(this._defenders);
@@ -434,6 +493,7 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
             losingByKills = new ArrayList<>(this._attackers);
             printKillSum(winingByKills, losingByKills);
             printSquareHistory(wining, losing);
+            printPositionHistory();
             return true;
         }
 
@@ -446,10 +506,12 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
             losing.add(this._king);
             printHistoryMove(wining, losing);
 
+
             winingByKills = new ArrayList<>(this._attackers);
             losingByKills = new ArrayList<>(this._defenders);
             printKillSum(winingByKills, losingByKills);
             printSquareHistory(wining, losing);
+            printPositionHistory();
             return true;
         }
         return false;
@@ -557,14 +619,14 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
             if (piece.getMoveNum() == 1){
                 continue;
             } else {
-                System.out.println(piece.getName() + ":" + piece.getPositionsHistory().toString());
+                System.out.println(piece.getName() + ": " + piece.getPositionsHistory().toString());
             }
         }
         for (ConcretePiece piece : losing) {
             if (piece.getMoveNum() == 1){
                 continue;
             } else {
-                System.out.println(piece.getName() + ":" + piece.getPositionsHistory().toString());
+                System.out.println(piece.getName() + ": " + piece.getPositionsHistory().toString());
             }
         }
         System.out.println("*".repeat(75));
@@ -579,7 +641,7 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
             if (pawn.getEatCount() < 1) {
                 continue;
             } else {
-                System.out.println(pawn.getName() + ":" + pawn.getEatCount() + " kills");
+                System.out.println(pawn.getName() + ": " + pawn.getEatCount() + " kills");
             }
         }
         System.out.println("*".repeat(75));
@@ -593,7 +655,7 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
             if (piece.getSquares() < 1) {
                 continue;
             } else {
-                System.out.println(piece.getName() + ":" + piece.getSquares() + " squares");
+                System.out.println(piece.getName() + ": " + piece.getSquares() + " squares");
             }
         }
         System.out.println("*".repeat(75));
@@ -607,14 +669,25 @@ private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
             positionList.addAll(Arrays.asList(row));
         }
         positionList.sort(comparatorByPosition);
+        for (Position pos : positionList) {
+            if (pos.getPieceSteppedOn().size() <= 1) {
+                continue;
+            } else {
+                System.out.println(pos.toString() + pos.getStepOnCount() + " pieces");
+            }
+        }
+        System.out.println("*".repeat(75));
     }
 
      class CompareByStep implements Comparator<ConcretePiece> {
 
         @Override
         public int compare(ConcretePiece p1, ConcretePiece p2) {
-
-            return Integer.compare(p1.getMoveNum(), p2.getMoveNum());
+            int moveComparison = Integer.compare(p1.getMoveNum(), p2.getMoveNum());
+            if (moveComparison != 0) {
+                return moveComparison;
+            }
+            return Integer.compare(ConcretePiece.getIntPart(p1.getName()), ConcretePiece.getIntPart(p2.getName()));
         }
     }
     Comparator<Pawn>

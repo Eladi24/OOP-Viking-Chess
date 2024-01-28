@@ -1,6 +1,6 @@
 public class Pawn extends ConcretePiece{
 
-    private int eatCount;
+    private int _eatCount = 0;
 
 
     public Pawn(ConcretePlayer player) {
@@ -8,11 +8,11 @@ public class Pawn extends ConcretePiece{
     }
 
     public int getEatCount() {
-        return eatCount;
+        return this._eatCount;
     }
 
     public void increaseEat() {
-        eatCount++;
+        this._eatCount++;
     }
 
 

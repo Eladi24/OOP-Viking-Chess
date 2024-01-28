@@ -44,7 +44,8 @@ public class Position {
         return this._pieceSteppedOn;
     }
     public void setPieceSteppedOn() {
-        this._pieceSteppedOn.add(this._piece.getName());
+            this._pieceSteppedOn.add(this._piece.getName());
+
     }
 
     public int getStepOnCount() {
