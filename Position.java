@@ -52,7 +52,7 @@ public class Position {
         return this._stepedOn;
     }
 
-    public void increamnetStepedOn(){
+    public void incrementSteppedOn(){
         this._stepedOn++;
     }
 
