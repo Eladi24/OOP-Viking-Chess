@@ -299,11 +299,7 @@ public class GameLogic implements PlayableLogic{
         this._board[destX][destY].setPiece((ConcretePiece) piece);
         this._board[currX][currY].setPiece(null);
 
-        // If the piece is a Pawn ,and it captures another piece, increase its eat count
-//        if (!(piece instanceof King) && isCaptured(b)) {
-//            Pawn pawn = (Pawn) piece;
-//            pawn.increaseEat();
-//        }
+        // If the piece is a Pawn ,and if it captures another piece, increase its eat count
         if (!(piece instanceof King)) {
             Pawn pawn = (Pawn) piece;
             isCaptured(b,pawn);
@@ -365,7 +361,7 @@ public class GameLogic implements PlayableLogic{
                 printSquareHistory(wining, losing);
                 printPositionHistory();
             }
-            else if (isEmptyNeighbor(this._currentKingPos)) {
+            else if (isKingCaptured(this._currentKingPos)) {
                 wining = new ArrayList<>(this._attackers);
                 losing = new ArrayList<>(_defenders);
                 losing.add(this._king);
@@ -424,125 +420,96 @@ public class GameLogic implements PlayableLogic{
         }
         return true;
     }
-//private boolean isValidMove(ConcretePiece piece,Position a, Position b) {
-//    int currX = a.getX(), currY = a.getY(), destX = b.getX(), destY = b.getY();
-//
-//    if (!(piece instanceof King) && (destX == 0 && destY == 0) || (destX == 10 && destY == 0)
-//            || (destX == 10 && destY == 10) || (destX == 0 && destY == 10)) {
-//        return false;
-//    }
-//    // checks if the piece can move horizontally, if another piece is blocking, returns false
-//    // case 1: currX is smaller than destX
-//    if ((currY == destY) && (currX < destX)) {
-//        for (int i = currX + 1; i <= destX ; i++) {
-//            if (this._board[i][currY].getPiece() != null) {
-//                return false;
-//            }
-//        }
-//        // checks if the piece can move vertically, if another piece is blocking, returns false
-//        // case 1: currY is smaller than destY
-//    } else if ((currY == destY) && (currX > destX)) {
-//        for (int i = currX -1; i >= destX ; i--) {
-//            if (this._board[i][currY].getPiece() != null) {
-//                return false;
-//            }
-//        }
-//    } else if ((currX == destX) && (currY < destY)) {
-//        for (int i = currY + 1; i <= destY; i++) {
-//            if ((this._board[currX][i].getPiece() != null)) {
-//                return false;
-//            }
-//        }
-//
-//    } else if ((currX == destX) && (currY > destY)) {
-//        for (int i = currY -1 ; i >= destY; i--) {
-//            if ((this._board[currX][i].getPiece() != null)) {
-//                return false;
-//            }
-//        }
-//    } else {
-//        return false;
-//    }
-//    return true;
-//}
 
 
-    private boolean isCaptured(Position position, Pawn pawn) {
+    /**
+     * This method checks if a pawn is capturing another opponent's pawn at a given position.
+     * @param position the current position of the pawn.
+     * @param pawn the pawn that is being moved.
+     */
+    private void isCaptured(Position position, Pawn pawn) {
         int x  = position.getX(), y = position.getY();
         boolean captured = false;
 
+        // Check if the pawn is at the top edge of the board and there is an opponent's piece above it
         if ((x== 1) && (this._board[x - 1][y].getPiece() != null)
                 && !(this._board[x - 1][y].getPiece().getOwner().equals(this._current))
         &&!(this._board[x - 1][y].getPiece() instanceof King)) {
             this._board[x - 1][y].setPiece(null);
-            captured = true;
+
             pawn.increaseEat();
         }
 
+        // Check if the pawn is at the bottom edge of the board and there is an opponent's piece below it
         if ((x== 9) && (this._board[x + 1][y].getPiece() != null)
                 && !(this._board[x + 1][y].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x + 1][y].getPiece() instanceof King)) {
             this._board[x + 1][y].setPiece(null);
-            captured =  true;
+
             pawn.increaseEat();
         }
 
+        // Check if the pawn is at the left edge of the board and there is an opponent's piece to its left
         if ((y== 1) && (this._board[x][y - 1].getPiece() != null)
                 && !(this._board[x][y - 1].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x][y - 1].getPiece() instanceof King)) {
             this._board[x][y - 1].setPiece(null);
-            captured = true;
+
+            pawn.increaseEat();
         }
 
+        // Check if the pawn is at the right edge of the board and there is an opponent's piece to its right
         if ((y == 9) && (this._board[x][y + 1].getPiece() != null)
                 && !(this._board[x][y + 1].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x][y + 1].getPiece() instanceof King)) {
             this._board[x][y + 1].setPiece(null);
-            captured = true;
+
             pawn.increaseEat();
         }
 
+        // Check if the pawn can capture an opponent's piece to its right
         if ((x <= 8) && (this._board[x+1][y].getPiece() != null)
                 && !(this._board[x+1][y].getPiece().getOwner().equals(this._current))
                 && (this._board[x + 2][y] .getPiece() != null) &&
                 (this._board[x+2][y].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x + 1][y].getPiece() instanceof King)) {
             this._board[x+1][y].setPiece(null);
-            captured = true;
+
             pawn.increaseEat();
         }
 
+        // Check if the pawn can capture an opponent's piece to its left
         if ((x >= 2) && (this._board[x-1][y].getPiece() != null)
                 && !(this._board[x-1][y].getPiece().getOwner().equals(this._current))
                 && (this._board[x - 2][y] .getPiece() != null) &&
                 (this._board[x-2][y].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x - 1][y].getPiece() instanceof King)) {
             this._board[x-1][y].setPiece(null);
-            captured = true;
+
             pawn.increaseEat();
         }
 
+        // Check if the pawn can capture an opponent's piece above it
         if ((y <= 8) && (this._board[x][y + 1].getPiece() != null)
                 && !(this._board[x][y + 1].getPiece().getOwner().equals(this._current))
                 && (this._board[x][y + 2].getPiece() != null) &&
                 (this._board[x][y + 2].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x][y + 1].getPiece() instanceof King)) {
             this._board[x][y + 1].setPiece(null);
-            captured = true;
+
             pawn.increaseEat();
         }
 
+        // Check if the pawn can capture an opponent's piece below it
         if ((y >= 2 )&& (this._board[x][y - 1].getPiece() != null) &&
                 !(this._board[x][y - 1].getPiece().getOwner().equals(this._current))
                 && (this._board[x][y - 2] .getPiece() != null) &&
                 (this._board[x][y - 2].getPiece().getOwner().equals(this._current))
                 &&!(this._board[x][y - 1].getPiece() instanceof King)) {
             this._board[x][y - 1].setPiece(null);
-            captured = true;
+
             pawn.increaseEat();
         }
-
-        return captured;
     }
 
 
@@ -584,7 +551,7 @@ public class GameLogic implements PlayableLogic{
         ArrayList<Pawn> winingByKills = new ArrayList<>();
         ArrayList<Pawn> losingByKills = new ArrayList<>();
 
-        // king is at one of the board corners
+        // king is at one of the board corners, the defender won
         if (isKingAtEdge()) {
             wining = new ArrayList<>(this._defenders);
             wining.add(this._king);
@@ -599,8 +566,7 @@ public class GameLogic implements PlayableLogic{
             return true;
         }
 
-        // king has been eaten
-        // TODO: if king is surrounded from any place on the board, then the game is over
+        // king has been eaten, the attacker won
 
         if  (isKingCaptured(this._currentKingPos)) {
             wining = new ArrayList<>(this._attackers);
@@ -698,15 +664,6 @@ public class GameLogic implements PlayableLogic{
         return false;
     }
 
-
-
-
-
-    private boolean isEmptyNeighbor(Position position) {
-        int x = position.getX(), y = position.getY();
-        return this._board[x + 1][y].getPiece() == null || this._board[x][y + 1].getPiece() == null
-                || this._board[x - 1][y].getPiece() == null || this._board[x][y - 1].getPiece() == null;
-    }
 
 
     @Override
@@ -879,19 +836,7 @@ public class GameLogic implements PlayableLogic{
             return Integer.compare(ConcretePiece.getIntPart(p1.getName()), ConcretePiece.getIntPart(p2.getName()));
         }
     }
-    Comparator<Pawn>
-            comparatorByKills = (Pawn p1, Pawn p2) -> {
-        return Integer.compare(p2.getEatCount(), p1.getEatCount());
-    };
 
-//    Comparator<Pawn>
-//    comparatorByNameKill = (Pawn p1, Pawn p2) -> {
-//      if (p1.getEatCount() == p2.getEatCount()) {
-//          return Integer.compare(ConcretePiece.getIntPart(p1.getName()), ConcretePiece.getIntPart(p2.getName()));
-//      }
-//          return Integer.compare(p1.getOwner().getWins(), p2.getOwner().getWins());
-//
-//    };
 
 
     /**

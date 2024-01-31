@@ -16,6 +16,9 @@ public class ConcretePlayer implements Player{
         return this.wins;
     }
 
+    /**
+     * This method increments the number of wins by one.
+     */
     public void increaseWins() {
         this.wins++;
     }
