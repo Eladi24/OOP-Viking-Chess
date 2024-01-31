@@ -546,43 +546,16 @@ public class GameLogic implements PlayableLogic{
 
     @Override
     public boolean isGameFinished() {
-        ArrayList<ConcretePiece> wining = new ArrayList<>();
-        ArrayList<ConcretePiece> losing = new ArrayList<>();
-        ArrayList<Pawn> winingByKills = new ArrayList<>();
-        ArrayList<Pawn> losingByKills = new ArrayList<>();
 
         // king is at one of the board corners, the defender won
         if (isKingAtEdge()) {
-            wining = new ArrayList<>(this._defenders);
-            wining.add(this._king);
-            losing = new ArrayList<>(this._attackers);
-            printHistoryMove(wining, losing);
 
-            winingByKills = new ArrayList<>(this._defenders);
-            losingByKills = new ArrayList<>(this._attackers);
-            printKillSum(winingByKills, losingByKills);
-            printSquareHistory(wining, losing);
-            printPositionHistory();
             return true;
         }
 
         // king has been eaten, the attacker won
 
-        if  (isKingCaptured(this._currentKingPos)) {
-            wining = new ArrayList<>(this._attackers);
-            losing = new ArrayList<>(_defenders);
-            losing.add(this._king);
-            printHistoryMove(wining, losing);
-
-
-            winingByKills = new ArrayList<>(this._attackers);
-            losingByKills = new ArrayList<>(this._defenders);
-            printKillSum(winingByKills, losingByKills);
-            printSquareHistory(wining, losing);
-            printPositionHistory();
-            return true;
-        }
-        return false;
+        return isKingCaptured(this._currentKingPos);
     }
 
     /**
@@ -657,7 +630,6 @@ public class GameLogic implements PlayableLogic{
                         !(this._board[x + 1][y].getPiece().getOwner().equals(this._defender)) &&
                         this._board[x][y - 1].getPiece() != null &&
                         !(this._board[x][y - 1].getPiece().getOwner().equals(this._defender)))) {
-            this._board[x][y].setPiece(null);
             return true;
         }
 
